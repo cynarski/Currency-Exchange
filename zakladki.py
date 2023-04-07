@@ -12,7 +12,7 @@ class MyTabbedPanel(TabbedPanel):
 class TabbedPanelItem1(TabbedPanelItem):
     def __init__(self, **kwargs):
         super(TabbedPanelItem1, self).__init__(**kwargs)
-        self.input = self.ids.input
+        #self.input = self.ids.input
 
     def update_image_left(self, option):
         if option == 'EUR':
@@ -32,10 +32,12 @@ class TabbedPanelItem1(TabbedPanelItem):
 
     def update_image_right(self, option):
         if option == 'EUR':
+            self.calculate(10)
             self.ids.image2.source = 'icons/eur.png'
         elif option == 'USD':
             self.ids.image2.source = 'icons/usa.png'
         elif option == 'PLN':
+            self.calculate(0.001)
             self.ids.image2.source = 'icons/pol.png'
         elif option == 'CHF':
             self.ids.image2.source = 'icons/swi.png'
@@ -45,6 +47,11 @@ class TabbedPanelItem1(TabbedPanelItem):
             self.ids.image2.source = 'icons/swe.png'
         elif option == 'JPN':
             self.ids.image2.source = 'icons/jpn.png'
+
+    def calculate(self, param=2.5):
+        number = self.ids.input.text
+        result = param * float(number)
+        self.ids.result_label.text = str(result)
 
 
 class TabbedPanelItem2(TabbedPanelItem):
