@@ -5,22 +5,21 @@
     TabbedPanelItem2:
         text: 'Courses'
     TabbedPanelItem3:
-        text: 'Plots'
+        text: 'Charts'
 
 <TabbedPanelItem1>:
 
     FloatLayout:
         orientation: 'horizontal'
-
-        Label:
-            size_hint: 0.1, 0.1
-            pos_hint: {'center_x': 0.5, 'y': 0.9}
+        Image:
+            source: '15473394.jpg'
+            size_hint: 1, 1
 
         Spinner:
             id: spinner
             size_hint: 0.1, 0.1
             pos_hint: {'center_x': 0.2, 'y': 0.8}
-            values: ['EUR', 'USD', 'PLN']
+            values: ['EUR', 'USD', 'PLN', 'CHF', 'GBP', 'SWE', 'JPN', 'CNY', 'CND']
             on_text: root.update_image_left(self.text)
             text: "From"
 
@@ -28,14 +27,13 @@
             id: image
             size_hint: None,None
             pos_hint: {'center_x': 0.3, 'y': 0.81}
-            source: 'icons/default.png'
             size: '48dp', '48dp'
 
         Spinner:
             id: spinner
             size_hint: 0.1, 0.1
             pos_hint: {'center_x': 0.8, 'y': 0.8}
-            values: ['EUR', 'USD', 'PLN']
+            values: ['EUR', 'USD', 'PLN', 'CHF', 'GBP', 'SWE', 'JPN', 'CNY', 'CND']
             on_text: root.update_image_right(self.text)
             text: "To"
 
@@ -43,13 +41,35 @@
             id: image2
             size_hint: None,None
             pos_hint: {'center_x': 0.7, 'y': 0.81}
-            source: 'icons/default.png'
             size: '48dp', '48dp'
 
         TextInput:
+            id: input
             size_hint: 0.1, 0.1
             pos_hint: {'center_x': 0.2, 'y': 0.69}
             hint_text: 'Wpisz tekst tutaj'
+            multiline: False
+            font_size: 24
+            input_filter: 'float'
+            halign: 'center'
+
+        Button:
+            text: "Exchange_Button"
+            size_hint: 0.2, 0.1
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+        Label:
+            id: result_label
+            canvas:
+                Color:
+                    rgb: (255,255,255)
+                Rectangle:
+                    size: self.width , self.height
+                    pos: self.x, self.y
+            size_hint: 0.1, 0.1
+            pos_hint: {'center_x': 0.8, 'y': 0.69}
+            text: ''
+
 
 
 <TabbedPanelItem2>:

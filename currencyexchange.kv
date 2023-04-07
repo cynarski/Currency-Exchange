@@ -1,22 +1,25 @@
-<MainScreen>:
-    BoxLayout:
-        orientation: "vertical"
-        spacing: dp(20)
-        padding: dp(20)
-
-        TextInput:
-            id: number_input
-            hint_text: "Enter a number"
-            input_filter: "float"
-
-        Button:
-            text: "Calculate"
-            on_release: root.calculate()
-
-        Screen:
-            name: "result_screen"
-            Label:
-                id: result_label
-                text: ''
-                font_size: '30sp'
-                halign: 'center'
+<BoxLayout>:
+    TextInput:
+        id: input_field
+        text: ''
+        multiline: False
+    Label:
+        id: operation_label
+        text: 'Wybierz operację:'
+        size_hint: (1, 0.5)
+    Button:
+        id: add_button
+        text: '+'
+        size_hint: (1, 0.5)
+    Button:
+        id: subtract_button
+        text: '-'
+        size_hint: (1, 0.5)
+    Button:
+        id: multiply_button
+        text: '*'
+        size_hint: (1, 0.5)
+    Button:
+        id: divide_button
+        text: '/'
+        size_hint: (1, 0.5)
