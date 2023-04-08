@@ -2,6 +2,8 @@ from kivy.app import App
 from kivy.uix.tabbedpanel import TabbedPanel, TabbedPanelItem
 from kivy.lang import Builder
 
+
+from exchange_functions import exchange_rate
 Builder.load_file('zakladki.kv', rulesonly=True)
 
 
@@ -32,12 +34,10 @@ class TabbedPanelItem1(TabbedPanelItem):
 
     def update_image_right(self, option):
         if option == 'EUR':
-            self.calculate(10)
             self.ids.image2.source = 'icons/eur.png'
         elif option == 'USD':
             self.ids.image2.source = 'icons/usa.png'
         elif option == 'PLN':
-            self.calculate(0.001)
             self.ids.image2.source = 'icons/pol.png'
         elif option == 'CHF':
             self.ids.image2.source = 'icons/swi.png'
@@ -50,8 +50,12 @@ class TabbedPanelItem1(TabbedPanelItem):
 
     def calculate(self, param=2.5):
         number = self.ids.input.text
-        result = param * float(number)
+        cur_from, cur_to = self.currencies()
+        result = exchange_rate(cur_from,cur_to,float(number))
         self.ids.result_label.text = str(result)
+
+    def currencies(self):
+        return self.ids.spinner1.text, self.ids.spinner2.text
 
 
 class TabbedPanelItem2(TabbedPanelItem):
